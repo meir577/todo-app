@@ -19,9 +19,4 @@ class DeleteTaskUsecaseInput extends BaseInput
     {
         return $this->task;
     }
-
-    public function getData(): array
-    {
-        return $this->data;
-    }
 }

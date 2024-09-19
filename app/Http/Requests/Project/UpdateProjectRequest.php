@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Project;
 
+use App\DTO\ProjectDto;
 use App\Http\Requests\BaseRequest;
 
 class UpdateProjectRequest extends BaseRequest
@@ -30,10 +31,10 @@ class UpdateProjectRequest extends BaseRequest
         ];
     }
 
-    public function getData(): array
+    public function getData(): ProjectDto
     {
-        return [
-            'name' => $this->get('name'),
-        ];
+        return new ProjectDto(
+            $this->get('name')
+        );
     }
 }

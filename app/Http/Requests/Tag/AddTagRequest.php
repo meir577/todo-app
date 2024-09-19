@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Tag;
 
+use App\DTO\TagDto;
 use App\Http\Requests\BaseRequest;
 
 class AddTagRequest extends BaseRequest
@@ -31,10 +32,10 @@ class AddTagRequest extends BaseRequest
         ];
     }
 
-    public function getData(): array
+    public function getData(): TagDto
     {
-        return [
-            'name' => $this->get('name'),
-        ];
+        return new TagDto(
+            $this->get('name')
+        );
     }
 }

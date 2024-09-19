@@ -16,8 +16,6 @@ class GetTaskUsecaseInput extends BaseInput
 
     public function getData(): array
     {
-        return [
-            'taskId' => $this->data['id'],
-        ];
+        return $this->data;
     }
 }

@@ -13,7 +13,7 @@ use Monolog\Logger;
 class LogoutUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly AuthService $authService,
+        private readonly AuthService $auth_service,
     )
     {
         parent::__construct(new Logger('LogoutUsecase'));
@@ -26,7 +26,7 @@ class LogoutUsecase extends BaseUsecase
     public function execute(): void
     {
         try {
-            $this->authService->logout();
+            $this->auth_service->logout();
             $this->data->setData([]);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), $ex->getCode());

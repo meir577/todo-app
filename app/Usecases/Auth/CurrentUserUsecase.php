@@ -10,13 +10,13 @@ use App\Usecases\Auth\Output\CurrentUserUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;
 use Monolog\Logger;
 
-class CurrentUserUserCase extends BaseUsecase
+class CurrentUserUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly AuthService $authService,
+        private readonly AuthService $auth_service,
     )
     {
-        parent::__construct(new Logger('CurrentUserUserCase'));
+        parent::__construct(new Logger('CurrentUserUsecase'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CurrentUserUserCase extends BaseUsecase
     public function execute(): void
     {
         try {
-            $user = $this->authService->getCurrentUser();
+            $user = $this->auth_service->getCurrentUser();
             $this->data->setData($user);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), $ex->getCode());

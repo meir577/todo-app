@@ -13,7 +13,7 @@ use Monolog\Logger;
 class GetProjectUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly ProjectService $projectService,
+        private readonly ProjectService $project_service,
     )
     {
         parent::__construct(new Logger('GetProjectUsecase'));
@@ -27,8 +27,8 @@ class GetProjectUsecase extends BaseUsecase
     {
         try {
             $userId = $this->input->getUserId();
-            $projectId = $this->input->getProjectId();
-            $projects = $this->projectService->fetchAllProjects($userId, $projectId);
+            $project_id = $this->input->getProjectId();
+            $projects = $this->project_service->fetchAllProjects($userId, $project_id);
             $this->data->setData($projects);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);

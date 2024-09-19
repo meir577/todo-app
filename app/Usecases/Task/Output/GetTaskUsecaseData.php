@@ -17,6 +17,18 @@ class GetTaskUsecaseData implements UsecaseDataInterface
 
     public function getData(): array
     {
-        return $this->data;
+        $tasks = [];
+
+        foreach ($this->data as $task) {
+            $tasks[] = [
+                'id' => $task['id'],
+                'name' => $task['name'],
+                'completed' => $task['completed'],
+                'project_id' => $task['project_id'],
+                'tags' => $task['tags'],
+            ];
+        }
+
+        return $tasks;
     }
 }

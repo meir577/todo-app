@@ -19,67 +19,67 @@ use Illuminate\Http\JsonResponse;
 
 class ProjectController extends AbstractController
 {
-    public function index(GetProjectUsecase $getProjectUsecase): JsonResponse
+    public function index(GetProjectUsecase $get_project_usecase): JsonResponse
     {
-        $getProjectUsecaseInput = new GetProjectUsecaseInput(auth()->user()->getAuthIdentifier());
+        $get_project_usecase_input = new GetProjectUsecaseInput(auth()->user()->getAuthIdentifier());
 
-        $getProjectUsecase->setInput($getProjectUsecaseInput);
+        $get_project_usecase->setInput($get_project_usecase_input);
 
-        $getProjectUsecase->execute();
+        $get_project_usecase->execute();
 
-        $response = $getProjectUsecase->getOutput();
+        $response = $get_project_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function store(CreateProjectRequest $createProjectRequest, CreateProjectUsecase $createProjectUsecase): JsonResponse
+    public function store(CreateProjectRequest $create_project_request, CreateProjectUsecase $create_project_usecase): JsonResponse
     {
-        $createProjectUsecaseInput = new CreateProjectUsecaseInput($createProjectRequest->getData());
+        $create_project_usecase_input = new CreateProjectUsecaseInput($create_project_request->getData());
 
-        $createProjectUsecase->setInput($createProjectUsecaseInput);
+        $create_project_usecase->setInput($create_project_usecase_input);
 
-        $createProjectUsecase->execute();
+        $create_project_usecase->execute();
 
-        $response = $createProjectUsecase->getOutput();
+        $response = $create_project_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function show(Project $project, GetProjectUsecase $getProjectUsecase): JsonResponse
+    public function show(Project $project, GetProjectUsecase $get_project_usecase): JsonResponse
     {
-        $getProjectUsecaseInput = new GetProjectUsecaseInput(auth()->user()->getAuthIdentifier(), $project);
+        $get_project_usecase_input = new GetProjectUsecaseInput(auth()->user()->getAuthIdentifier(), $project);
 
-        $getProjectUsecase->setInput($getProjectUsecaseInput);
+        $get_project_usecase->setInput($get_project_usecase_input);
 
-        $getProjectUsecase->execute();
+        $get_project_usecase->execute();
 
-        $response = $getProjectUsecase->getOutput();
+        $response = $get_project_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function update(UpdateProjectRequest $updateProjectRequest, Project $project, UpdateProjectUsecase $updateProjectUsecase): JsonResponse
+    public function update(UpdateProjectRequest $update_project_request, Project $project, UpdateProjectUsecase $update_project_usecase): JsonResponse
     {
-        $updateProjectUsecaseInput = new UpdateProjectUsecaseInput($project, $updateProjectRequest->getData());
+        $update_project_usecase_input = new UpdateProjectUsecaseInput($project, $update_project_request->getData());
 
-        $updateProjectUsecase->setInput($updateProjectUsecaseInput);
+        $update_project_usecase->setInput($update_project_usecase_input);
 
-        $updateProjectUsecase->execute();
+        $update_project_usecase->execute();
 
-        $response = $updateProjectUsecase->getOutput();
+        $response = $update_project_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function destroy(Project $project, DeleteProjectUsecase $deleteProjectUsecase): JsonResponse
+    public function destroy(Project $project, DeleteProjectUsecase $delete_project_usecase): JsonResponse
     {
-        $deleteProjectUsecaseInput = new DeleteProjectUsecaseInput($project);
+        $delete_project_usecase_input = new DeleteProjectUsecaseInput($project);
 
-        $deleteProjectUsecase->setInput($deleteProjectUsecaseInput);
+        $delete_project_usecase->setInput($delete_project_usecase_input);
 
-        $deleteProjectUsecase->execute();
+        $delete_project_usecase->execute();
 
-        $response = $deleteProjectUsecase->getOutput();
+        $response = $delete_project_usecase->getOutput();
 
         return $this->json($response);
     }

@@ -15,28 +15,28 @@ use Illuminate\Http\JsonResponse;
 
 class TagController extends AbstractController
 {
-    public function assignTag(AddTagRequest $addTagRequest, Task $task, CreateTagToTaskUsecase $assignTagToTaskUsecase): JsonResponse
+    public function assignTag(AddTagRequest $add_tag_request, Task $task, CreateTagToTaskUsecase $assign_task_to_task_usecase): JsonResponse
     {
-        $assignTagToTaskUsecaseInput = new CreateTagToTaskUsecaseInput($task, $addTagRequest->getData());
+        $assign_tag_to_task_usecase_input = new CreateTagToTaskUsecaseInput($task, $add_tag_request->getData());
 
-        $assignTagToTaskUsecase->setInput($assignTagToTaskUsecaseInput);
+        $assign_task_to_task_usecase->setInput($assign_tag_to_task_usecase_input);
 
-        $assignTagToTaskUsecase->execute();
+        $assign_task_to_task_usecase->execute();
 
-        $response = $assignTagToTaskUsecase->getOutput();
+        $response = $assign_task_to_task_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function removeTag(Tag $tag, DeleteTagFromTaskUsecase $removeTagFromTaskUsecase): JsonResponse
+    public function removeTag(Tag $tag, DeleteTagFromTaskUsecase $remove_tag_from_task_usecase): JsonResponse
     {
-        $removeTagFromTaskUsecaseInput = new DeleteTagFromTaskUsecaseInput($tag);
+        $remove_tag_from_task_usecase_input = new DeleteTagFromTaskUsecaseInput($tag);
 
-        $removeTagFromTaskUsecase->setInput($removeTagFromTaskUsecaseInput);
+        $remove_tag_from_task_usecase->setInput($remove_tag_from_task_usecase_input);
 
-        $removeTagFromTaskUsecase->execute();
+        $remove_tag_from_task_usecase->execute();
 
-        $response = $removeTagFromTaskUsecase->getOutput();
+        $response = $remove_tag_from_task_usecase->getOutput();
 
         return $this->json($response);
     }

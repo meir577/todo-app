@@ -8,11 +8,11 @@ use App\Models\Tag;
 
 class TagRepository
 {
-    public function insert(int $taskId, array $data): array
+    public function insert(int $task_id, array $data): array
     {
         return Tag::create([
             'name' => $data['name'],
-            'task_id' => $taskId,
+            'task_id' => $task_id,
         ])->toArray();
     }
 

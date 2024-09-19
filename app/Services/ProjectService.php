@@ -4,56 +4,33 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Exceptions\Project\TagException;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
-use Illuminate\Support\Facades\Log;
 
 class ProjectService
 {
     public function __construct(
-        private readonly ProjectRepository $projectRepository
+        private readonly ProjectRepository $project_repository
     ) {
     }
 
-    public function fetchAllProjects(int $userId, ?int $projectId): array
+    public function fetchAllProjects(int $user_id, ?int $project_id): array
     {
-        return $this->projectRepository->selectAll($userId, $projectId, true)->toArray();
+        return $this->project_repository->selectAll($user_id, $project_id, true)->toArray();
     }
 
-    /**
-     * @throws TagException
-     */
-    public function create(array $taskData): array
+    public function create(array $task_data): array
     {
-        try {
-            return $this->projectRepository->insert($taskData);
-        } catch (\Exception $e) {
-            Log::error('ProjectService::create(): ' . $e->getMessage());
-            throw new TagException('Failed to create the project. Try later.');
-        }
+        return $this->project_repository->insert($task_data);
     }
 
-    /**
-     * @throws TagException
-     */
     public function remove(Project $project): ?bool
     {
-        try {
-            return $this->projectRepository->delete($project);
-        } catch (\Exception $e) {
-            Log::error('ProjectService::remove(): ' . $e->getMessage());
-            throw new TagException('Failed to remove the project. Try later.');
-        }
+        return $this->project_repository->delete($project);
     }
 
     public function change(Project $project, array $data): array
     {
-        try {
-            return $this->projectRepository->update($project, $data);
-        } catch (\Exception $e) {
-            Log::error('ProjectService::change(): ' . $e->getMessage());
-            throw new TagException('Failed to change the project. Try later.');
-        }
+        return $this->project_repository->update($project, $data);
     }
 }

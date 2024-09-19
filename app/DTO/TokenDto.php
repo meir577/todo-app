@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
-class TokenDto
+class TokenDto extends AbstractDto
 {
     public function __construct(
         private readonly string $token,

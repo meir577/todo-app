@@ -13,7 +13,7 @@ use Monolog\Logger;
 class DeleteProjectUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly ProjectService $projectService,
+        private readonly ProjectService $project_service,
     )
     {
         parent::__construct(new Logger('DeleteProjectUsecase'));
@@ -27,7 +27,7 @@ class DeleteProjectUsecase extends BaseUsecase
     {
         try {
             $project = $this->input->getProject();
-            $this->projectService->remove($project);
+            $this->project_service->remove($project);
             $this->data->setData([]);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);

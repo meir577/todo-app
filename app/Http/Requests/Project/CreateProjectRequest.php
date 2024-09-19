@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Project;
 
+use App\DTO\ProjectDto;
 use App\Http\Requests\BaseRequest;
 
 class CreateProjectRequest extends BaseRequest
@@ -30,11 +31,11 @@ class CreateProjectRequest extends BaseRequest
         ];
     }
 
-    public function getData(): array
+    public function getData(): ProjectDto
     {
-        return [
-            'name' => $this->get('name'),
-            'user_id' => auth()->id(),
-        ];
+        return new ProjectDto(
+            $this->get('name'),
+            auth()->id()
+        );
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Auth;
 
+use App\DTO\CredentialsDto;
 use App\Http\Requests\BaseRequest;
 
 class AuthRequest extends BaseRequest
@@ -26,11 +27,11 @@ class AuthRequest extends BaseRequest
         ];
     }
 
-    public function getData(): array
+    public function getData(): CredentialsDto
     {
-        return [
-            'email' => $this->input('email'),
-            'password' => $this->input('password'),
-        ];
+        return new CredentialsDto(
+            $this->get('email'),
+            $this->get('password')
+        );
     }
 }

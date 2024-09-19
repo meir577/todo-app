@@ -13,7 +13,7 @@ use Monolog\Logger;
 class LoginUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly AuthService $authService,
+        private readonly AuthService $auth_service,
     )
     {
         parent::__construct(new Logger('LoginUsecase'));
@@ -27,7 +27,7 @@ class LoginUsecase extends BaseUsecase
     {
         try {
             $credentials = $this->input->getCredentials();
-            $tokenDto = $this->authService->attempt($credentials);
+            $tokenDto = $this->auth_service->attempt($credentials);
             $this->data->setData($tokenDto->toArray());
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), $ex->getCode());

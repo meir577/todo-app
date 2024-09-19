@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\DTO\AbstractDto;
 use App\Http\Responses\ErrorResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,5 +19,5 @@ abstract class BaseRequest extends FormRequest
         );
     }
 
-    abstract public function getData(): array;
+    abstract public function getData(): AbstractDto;
 }

@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Task;
 
+use App\DTO\TaskDto;
 use App\Http\Requests\BaseRequest;
 
 class CreateTaskRequest extends BaseRequest
@@ -31,12 +34,12 @@ class CreateTaskRequest extends BaseRequest
         ];
     }
 
-    public function getData(): array
+    public function getData(): TaskDto
     {
-        return [
-            'name' => $this->input('name'),
-            'completed' => false,
-            'project_id' => $this->input('project_id'),
-        ];
+        return new TaskDto(
+            $this->get('name'),
+            $this->get('completed'),
+            $this->get('project_id')
+        );
     }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Task;
 
+use App\DTO\TaskDto;
 use App\Http\Requests\BaseRequest;
+use App\Rules\BelongsToUserProjects;
 
 class UpdateTaskRequest extends BaseRequest
 {
@@ -16,31 +18,29 @@ class UpdateTaskRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:255',
-            'project_id' => 'required|integer|exists:projects,id',
-            'completed' => 'boolean',
+            'name' => ['nullable', 'string', 'min:3', 'max:255'],
+            'project_id' => ['nullable', 'integer', new BelongsToUserProjects],
+            'completed' => ['nullable', 'boolean']
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'Task name is required.',
             'name.min' => 'Task name must be at least 3 characters.',
             'name.max' => 'Task name must be less than 255 characters.',
-            'project_id.required' => 'Project is required.',
-            'project_id.integer' => 'Project must be an integer.',
+            'project_id.integer' => 'Project id must be an integer.',
             'project_id.exists' => 'Project does not exist.',
             'completed.boolean' => 'Completed field must be boolean.',
         ];
     }
 
-    public function getData(): array
+    public function getData(): TaskDto
     {
-        return [
-            'name' => $this->get('name'),
-            'completed' => $this->get('completed'),
-            'project_id' => $this->get('project_id'),
-        ];
+        return new TaskDto(
+            $this->get('name'),
+            $this->get('completed'),
+            $this->get('project_id')
+        );
     }
 }

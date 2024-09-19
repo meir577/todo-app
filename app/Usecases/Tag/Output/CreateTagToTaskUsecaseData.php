@@ -17,6 +17,10 @@ class CreateTagToTaskUsecaseData implements UsecaseDataInterface
 
     public function getData(): array
     {
-        return $this->data;
+        return [
+            'id' => $this->data['id'],
+            'name' => $this->data['name'],
+            'task_id' => $this->data['task_id'],
+        ];
     }
 }

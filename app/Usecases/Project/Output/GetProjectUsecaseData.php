@@ -17,6 +17,17 @@ class GetProjectUsecaseData implements UsecaseDataInterface
 
     public function getData(): array
     {
-        return $this->data;
+        $projects = [];
+
+        foreach ($this->data as $project) {
+            $projects[] = [
+                'id' => $project['id'],
+                'name' => $project['name'],
+                'tasks_count' => $project['tasks_count'],
+                'user_id' => $project['user_id']
+            ];
+        }
+
+        return $projects;
     }
 }

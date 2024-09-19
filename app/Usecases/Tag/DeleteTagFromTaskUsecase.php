@@ -13,7 +13,7 @@ use Monolog\Logger;
 class DeleteTagFromTaskUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly TagService $tagService,
+        private readonly TagService $tag_service,
     )
     {
         parent::__construct(new Logger('DeleteTagFromTaskUsecase'));
@@ -27,7 +27,7 @@ class DeleteTagFromTaskUsecase extends BaseUsecase
     {
         try {
             $data = $this->input->getData();
-            $this->tagService->remove($data);
+            $this->tag_service->remove($data);
             $this->data->setData([]);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);

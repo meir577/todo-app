@@ -17,6 +17,10 @@ class UpdateProjectUsecaseData implements UsecaseDataInterface
 
     public function getData(): array
     {
-        return $this->data;
+        return [
+            'id' => $this->data['id'],
+            'name' => $this->data['name'],
+            'user_id' => $this->data['user_id']
+        ];
     }
 }

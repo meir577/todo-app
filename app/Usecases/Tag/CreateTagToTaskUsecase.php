@@ -13,7 +13,7 @@ use Monolog\Logger;
 class CreateTagToTaskUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly TagService $taskService,
+        private readonly TagService $tag_service,
     )
     {
         parent::__construct(new Logger('CreateTagToTaskUsecase'));
@@ -26,10 +26,10 @@ class CreateTagToTaskUsecase extends BaseUsecase
     public function execute(): void
     {
         try {
-            $taskId = $this->input->getTaskId();
+            $task_id = $this->input->getTaskId();
             $data = $this->input->getData();
-            $taskData = $this->taskService->create($taskId, $data);
-            $this->data->setData($taskData);
+            $task_data = $this->tag_service->create($task_id, $data);
+            $this->data->setData($task_data);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);
         } catch (\Throwable $th) {

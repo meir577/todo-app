@@ -19,71 +19,71 @@ use Illuminate\Http\JsonResponse;
 
 class TaskController extends AbstractController
 {
-    public function index(GetTaskUsecase $getTasksUsecase): JsonResponse
+    public function index(GetTaskUsecase $get_task_usecase): JsonResponse
     {
-        $getTasksUsecaseInput = new GetTaskUsecaseInput([
-            'userId' => request()->user()->getAuthIdentifier(),
-            'projectId' => request()->get('project_id'),
+        $get_task_usecase_input = new GetTaskUsecaseInput([
+            'user_id' => request()->user()->getAuthIdentifier(),
+            'project_id' => request()->get('project_id'),
             'name' => request()->get('name')
         ]);
 
-        $getTasksUsecase->setInput($getTasksUsecaseInput);
+        $get_task_usecase->setInput($get_task_usecase_input);
 
-        $getTasksUsecase->execute();
+        $get_task_usecase->execute();
 
-        $response = $getTasksUsecase->getOutput();
-
-        return $this->json($response);
-    }
-
-    public function store(CreateTaskRequest $createTaskRequest, CreateTaskUsecase $createTaskUsecase): JsonResponse
-    {
-        $createTaskUsecaseInput = new CreateTaskUsecaseInput($createTaskRequest->getData());
-
-        $createTaskUsecase->setInput($createTaskUsecaseInput);
-
-        $createTaskUsecase->execute();
-
-        $response = $createTaskUsecase->getOutput();
+        $response = $get_task_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function show(Task $task, GetTaskUsecase $getTaskUsecase): JsonResponse
+    public function store(CreateTaskRequest $create_task_request, CreateTaskUsecase $create_task_usecase): JsonResponse
     {
-        $getTasksUsecaseInput = new GetTaskUsecaseInput($task->toArray());
+        $create_task_usecase_input = new CreateTaskUsecaseInput($create_task_request->getData());
 
-        $getTaskUsecase->setInput($getTasksUsecaseInput);
+        $create_task_usecase->setInput($create_task_usecase_input);
 
-        $getTaskUsecase->execute();
+        $create_task_usecase->execute();
 
-        $response = $getTaskUsecase->getOutput();
+        $response = $create_task_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function update(UpdateTaskRequest $updateTaskRequest, Task $task, UpdateTaskUsecase $updateTaskUsecase): JsonResponse
+    public function show(Task $task, GetTaskUsecase $get_task_usecase): JsonResponse
     {
-        $updateTaskUsecaseInput = new UpdateTaskUsecaseInput($task, $updateTaskRequest->getData());
+        $get_task_usecase_input = new GetTaskUsecaseInput($task->toArray());
 
-        $updateTaskUsecase->setInput($updateTaskUsecaseInput);
+        $get_task_usecase->setInput($get_task_usecase_input);
 
-        $updateTaskUsecase->execute();
+        $get_task_usecase->execute();
 
-        $response = $updateTaskUsecase->getOutput();
+        $response = $get_task_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function destroy(Task $task, DeleteTaskUsecase $deleteTaskUsecase): JsonResponse
+    public function update(UpdateTaskRequest $update_task_request, Task $task, UpdateTaskUsecase $update_task_usecase): JsonResponse
     {
-        $deleteTaskUsecaseInput = new DeleteTaskUsecaseInput($task);
+        $update_task_usecase_input = new UpdateTaskUsecaseInput($task, $update_task_request->getData());
 
-        $deleteTaskUsecase->setInput($deleteTaskUsecaseInput);
+        $update_task_usecase->setInput($update_task_usecase_input);
 
-        $deleteTaskUsecase->execute();
+        $update_task_usecase->execute();
 
-        $response = $deleteTaskUsecase->getOutput();
+        $response = $update_task_usecase->getOutput();
+
+        return $this->json($response);
+    }
+
+    public function destroy(Task $task, DeleteTaskUsecase $delete_task_usecase): JsonResponse
+    {
+        $delete_task_usecase_input = new DeleteTaskUsecaseInput($task);
+
+        $delete_task_usecase->setInput($delete_task_usecase_input);
+
+        $delete_task_usecase->execute();
+
+        $response = $delete_task_usecase->getOutput();
 
         return $this->json($response);
     }

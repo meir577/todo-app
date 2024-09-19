@@ -17,6 +17,12 @@ class UpdateTaskUsecaseData implements UsecaseDataInterface
 
     public function getData(): array
     {
-        return $this->data;
+        return [
+            'id' => $this->data['id'],
+            'name' => $this->data['name'],
+            'completed' => $this->data['completed'],
+            'project_id' => $this->data['project_id'],
+            'tags' => $this->data['tags'],
+        ];
     }
 }

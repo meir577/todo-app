@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\AuthRequest;
-use App\Usecases\Auth\CurrentUserUserCase;
+use App\Usecases\Auth\CurrentUserUsecase;
 use App\Usecases\Auth\Input\LoginUsecaseInput;
 use App\Usecases\Auth\LoginUsecase;
 use App\Usecases\Auth\LogoutUsecase;
@@ -13,33 +13,33 @@ use Illuminate\Http\JsonResponse;
 
 class AuthController extends AbstractController
 {
-    public function login(AuthRequest $credentials, LoginUsecase $loginUsecase): JsonResponse
+    public function login(AuthRequest $credentials, LoginUsecase $login_usecase): JsonResponse
     {
-        $loginUsecaseInput = new LoginUsecaseInput($credentials->getData());
+        $login_usecase_input = new LoginUsecaseInput($credentials->getData());
 
-        $loginUsecase->setInput($loginUsecaseInput);
+        $login_usecase->setInput($login_usecase_input);
 
-        $loginUsecase->execute();
+        $login_usecase->execute();
 
-        $response = $loginUsecase->getOutput();
+        $response = $login_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function user(CurrentUserUserCase $currentUserUserCase): JsonResponse
+    public function user(CurrentUserUsecase $current_user_usecase): JsonResponse
     {
-        $currentUserUserCase->execute();
+        $current_user_usecase->execute();
 
-        $response = $currentUserUserCase->getOutput();
+        $response = $current_user_usecase->getOutput();
 
         return $this->json($response);
     }
 
-    public function logout(LogoutUsecase $logoutUsecase): JsonResponse
+    public function logout(LogoutUsecase $logout_usecase): JsonResponse
     {
-        $logoutUsecase->execute();
+        $logout_usecase->execute();
 
-        $response = $logoutUsecase->getOutput();
+        $response = $logout_usecase->getOutput();
 
         return $this->json($response);
     }

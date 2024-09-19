@@ -3,8 +3,6 @@
 namespace App\Exceptions;
 
 use App\Exceptions\Auth\AuthException;
-use App\Exceptions\Project\TagException;
-use App\Exceptions\Token\TokenException;
 use App\Http\Responses\ErrorResponse;
 use App\Http\Responses\NotFoundResponse;
 use App\Http\Responses\UnauthorizedResponse;
@@ -55,10 +53,6 @@ class Handler extends ExceptionHandler
             if ($request->is('api/*')) {
                 if ($e instanceof NotFoundHttpException) {
                     return new NotFoundResponse();
-                }
-
-                if ($e instanceof TagException) {
-                    return new ErrorResponse([], $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
                 }
 
                 if ($e instanceof AuthException) {

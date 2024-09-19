@@ -13,7 +13,7 @@ use Monolog\Logger;
 class CreateProjectUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly ProjectService $projectService,
+        private readonly ProjectService $project_service,
     )
     {
         parent::__construct(new Logger('CreateProjectUsecase'));
@@ -27,7 +27,7 @@ class CreateProjectUsecase extends BaseUsecase
     {
         try {
             $data = $this->input->getData();
-            $project = $this->projectService->create($data);
+            $project = $this->project_service->create($data);
             $this->data->setData($project);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);

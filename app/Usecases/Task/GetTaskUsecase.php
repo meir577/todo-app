@@ -13,7 +13,7 @@ use Monolog\Logger;
 class GetTaskUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly TaskService $taskService,
+        private readonly TaskService $task_service,
     )
     {
         parent::__construct(new Logger('GetTaskUsecase'));
@@ -27,7 +27,7 @@ class GetTaskUsecase extends BaseUsecase
     {
         try {
             $data = $this->input->getData();
-            $tasks = $this->taskService->fetchTasks($data);
+            $tasks = $this->task_service->fetchTasks($data);
             $this->data->setData($tasks);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);

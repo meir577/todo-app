@@ -13,7 +13,7 @@ use Monolog\Logger;
 class DeleteTaskUsecase extends BaseUsecase
 {
     public function __construct(
-        private readonly TaskService $taskService,
+        private readonly TaskService $task_service,
     )
     {
         parent::__construct(new Logger('DeleteTaskUsecase'));
@@ -27,7 +27,7 @@ class DeleteTaskUsecase extends BaseUsecase
     {
         try {
             $task = $this->input->getTask();
-            $this->taskService->remove($task);
+            $this->task_service->remove($task);
             $this->data->setData([]);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);

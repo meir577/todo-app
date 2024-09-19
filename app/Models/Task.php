@@ -16,8 +16,12 @@ class Task extends Model
         'name', 'project_id', 'completed'
     ];
 
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
+
     protected $with = [
-        'tags'
+        'tags:id,name,task_id',
     ];
 
     public function project(): BelongsTo

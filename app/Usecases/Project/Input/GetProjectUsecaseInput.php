@@ -10,7 +10,7 @@ use MechtaMarket\PhpEnhance\Base\BaseInput;
 class GetProjectUsecaseInput extends BaseInput
 {
     public function __construct(
-        private readonly int $userId,
+        private readonly int      $user_id,
         private readonly ?Project $project = null
     )
     {
@@ -18,7 +18,7 @@ class GetProjectUsecaseInput extends BaseInput
 
     public function getUserId(): int
     {
-        return $this->userId;
+        return $this->user_id;
     }
 
     public function getProjectId(): ?int

@@ -21,11 +21,11 @@ class TaskRepository
         $query = Task::query();
 
         if (isset($filter['taskId'])) {
-            return $query->where('id', $filter['taskId'])->first();
+            return $query->where('id', $filter['project_id'])->first();
         }
 
         if (isset($filter['projectId'])) {
-            $query->where('project_id', $filter['projectId']);
+            $query->where('project_id', $filter['project_id']);
         }
 
         if (isset($filter['name'])) {

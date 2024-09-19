@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class UserService
 {
     public function __construct(
-        private UserRepository $userRepository
+        private readonly UserRepository $user_repository
     )
     {
     }
 
-    public function getUser(): array
+    public function getUser(): User
     {
-        return $this->userRepository->find(Auth::id())->toArray();
+        return $this->user_repository->find(Auth::id());
     }
 
     public function revokeToken(): void

@@ -17,6 +17,10 @@ class CreateTaskUsecaseData implements UsecaseDataInterface
 
     public function getData(): array
     {
-        return $this->data;
+        return [
+            'id' => $this->data['id'],
+            'name' => $this->data['name'],
+            'project_id' => $this->data['project_id'],
+        ];
     }
 }
