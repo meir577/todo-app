@@ -8,8 +8,6 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Collection;
-use Iterator;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
