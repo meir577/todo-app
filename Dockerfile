@@ -1,23 +1,30 @@
 FROM php:8.1-apache
 
+# Set working directory
 WORKDIR /var/www/html
 
+# Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Install dependencies
 RUN apt-get update && \
-    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libzip-dev && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install gd zip pdo pdo_mysql
+    apt-get install -y git unzip && \
+    docker-php-ext-install pdo pdo_mysql && \
+    rm -rf /var/lib/apt/lists/*
 
+# Copy Composer from the official image
 COPY --from=composer:2.5 /usr/bin/composer /usr/bin/composer
 
-COPY . /var/www/html
+# Copy application files
+COPY . .
 
-RUN composer install --no-interaction --prefer-dist
+# Install PHP dependencies
+RUN composer install --no-interaction --prefer-dist && \
+    php artisan optimize:clear && \
+    chown -R www-data:www-data /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
+# Expose the Apache port
 EXPOSE 80
 
+# Run Apache in the foreground
 CMD ["apache2-foreground"]

@@ -37,7 +37,7 @@ class AuthService
 
     public function getCurrentUser(): array
     {
-        return $this->user_service->getUser();
+        return $this->user_service->getUser()->toArray();
     }
 
     public function logout(): void
