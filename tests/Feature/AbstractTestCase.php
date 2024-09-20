@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Collection;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -25,10 +26,15 @@ class AbstractTestCase extends TestCase
         ]);
     }
 
-    protected function createTask(Project $project, int $task_id = 1): Task
+    protected function createTask(Project $project, int $count = 1): Task|Collection
     {
-        return Task::factory()->create([
-            'id' => $task_id,
+        if ($count === 1) {
+            return Task::factory()->create([
+                'project_id' => $project->id,
+            ]);
+        }
+
+        return Task::factory($count)->create([
             'project_id' => $project->id,
         ]);
     }

@@ -11,8 +11,8 @@ class TaskFactory extends Factory
         return [
             'id' => $this->faker->unique()->randomNumber(),
             'name' => $this->faker->name(),
-            'completed' => $this->faker->boolean(),
-            'project_id' => 1
+            'completed' => $this->faker->numberBetween(0, 1),
+            'project_id' => 1,
         ];
     }
 }

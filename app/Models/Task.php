@@ -17,7 +17,7 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'completed' => 'boolean'
+        'completed' => 'boolean',
     ];
 
     protected $with = [
