@@ -5,7 +5,7 @@
 ### Installation
 
 - `git clone ...` clone the project locally
-- `cd api-crud` - change directory into project folder
+- `cd todo-app` - change directory into project folder
 - `composer install` - install necessary dependencies
 - `cp .env.example .env` - make a copy of example env file
 - make changes in DB configraion according to your preference
