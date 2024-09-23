@@ -6,13 +6,11 @@
 
 - `git clone ...` clone the project locally
 - `cd todo-app` - change directory into project folder
-- `composer install` - install necessary dependencies
-- `cp .env.example .env` - make a copy of example env file
-- make changes in DB configraion according to your preference
-- `php artisan key:generate` - generate application key
-- `php artisan migrate` - populate database with required tables
-- `php artisan db:seed` - populate tables with required data (user creds)
-- `php artisan serve` - start the server
+- `.env` - make changes in DB configraion according to your preference
+- `docker-compose up --build` - build the docker image
+- `docker exec -it app php artisan key:generate` - generate application key
+- `docker exec -it app php artisan migrate` - populate database with required tables
+- `docker exec -it app php artisan db:seed` - populate tables with required data (user creds)
 
 ### Versions
 
