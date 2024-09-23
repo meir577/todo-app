@@ -1,30 +1,21 @@
-FROM php:8.1-apache
+# Dockerfile
+FROM php:8.1-fpm
 
-# Set working directory
-WORKDIR /var/www/html
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    && docker-php-ext-install pdo pdo_mysql
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+# Set the working directory
+WORKDIR /var/www
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y git unzip && \
-    docker-php-ext-install pdo pdo_mysql && \
-    rm -rf /var/lib/apt/lists/*
-
-# Copy Composer from the official image
-COPY --from=composer:2.5 /usr/bin/composer /usr/bin/composer
-
-# Copy application files
+# Copy the existing application directory contents
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-interaction --prefer-dist && \
-    php artisan optimize:clear && \
-    chown -R www-data:www-data /var/www/html
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Expose the Apache port
-EXPOSE 80
+# Install dependencies
+RUN composer install
 
-# Run Apache in the foreground
-CMD ["apache2-foreground"]
+# Expose port 9000
+EXPOSE 9000
