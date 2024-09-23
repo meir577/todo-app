@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Auth;
 
-use App\Services\AuthService;
+use App\Domain\User\Services\AuthService;
 use App\Usecases\Auth\Input\LogoutUsecaseInput;
 use App\Usecases\Auth\Output\LogoutUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;

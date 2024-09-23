@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Usecases\Tag\Input;
 
+use App\Domain\Task\Entity\Task;
 use App\DTO\TagDto;
-use App\Models\Task;
 use MechtaMarket\PhpEnhance\Base\BaseInput;
 
 class CreateTagToTaskUsecaseInput extends BaseInput

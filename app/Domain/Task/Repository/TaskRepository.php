@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Domain\Task\Repository;
 
-use App\Models\Task;
+use App\Domain\Task\Entity\Task;
+use Illuminate\Database\Eloquent\Collection;
 
 class TaskRepository
 {
@@ -16,15 +17,15 @@ class TaskRepository
         ]);
     }
 
-    public function selectAll(array $filter): mixed
+    public function selectAll(array $filter): Collection
     {
         $query = Task::query();
 
-        if (isset($filter['taskId'])) {
-            return $query->where('id', $filter['project_id'])->first();
+        if (isset($filter['task_id'])) {
+            return $query->where('id', $filter['task_id'])->get();
         }
 
-        if (isset($filter['projectId'])) {
+        if (isset($filter['project_id'])) {
             $query->where('project_id', $filter['project_id']);
         }
 
@@ -32,17 +33,20 @@ class TaskRepository
             $query->where('name', 'like', '%' . $filter['name'] . '%');
         }
 
-        return $query->lazy();
+        return $query->get();
     }
 
-    public function delete(Task $task): ?bool
+    public function delete(Task $task): Task
     {
-        return $task->delete();
+        $task->delete();
+
+        return $task;
     }
 
     public function update(Task $task, array $data): Task
     {
         $task->update($data);
+
         return $task;
     }
 }

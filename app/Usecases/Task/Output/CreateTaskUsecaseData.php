@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Usecases\Task\Output;
 
+use App\Domain\Task\Entity\Task;
 use MechtaMarket\PhpEnhance\Interfaces\UsecaseDataInterface;
 
 class CreateTaskUsecaseData implements UsecaseDataInterface
 {
-    private readonly array $data;
+    private readonly Task $data;
 
-    public function setData(array $data): void
+    public function setData(Task $data): void
     {
         $this->data = $data;
     }
@@ -18,9 +19,10 @@ class CreateTaskUsecaseData implements UsecaseDataInterface
     public function getData(): array
     {
         return [
-            'id' => $this->data['id'],
-            'name' => $this->data['name'],
-            'project_id' => $this->data['project_id'],
+            'id' => $this->data->id,
+            'name' => $this->data->name,
+            'tags' => $this->data->tags->toArray(),
+            'project_id' => $this->data->project_id,
         ];
     }
 }

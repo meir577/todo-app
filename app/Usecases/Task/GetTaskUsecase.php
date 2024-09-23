@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Task;
 
-use App\Services\TaskService;
+use App\Domain\Task\Services\TaskService;
 use App\Usecases\Task\Input\GetTaskUsecaseInput;
 use App\Usecases\Task\Output\GetTaskUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;

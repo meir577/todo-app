@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Tag;
 
-use App\Services\TagService;
+use App\Domain\Tag\Services\TagService;
 use App\Usecases\Tag\Input\CreateTagToTaskUsecaseInput;
 use App\Usecases\Tag\Output\CreateTagToTaskUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;

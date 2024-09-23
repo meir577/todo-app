@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Tag\Input;
 
-use App\Models\Tag;
+use App\Domain\Tag\Entity\Tag;
 use MechtaMarket\PhpEnhance\Base\BaseInput;
 
 class DeleteTagFromTaskUsecaseInput extends BaseInput

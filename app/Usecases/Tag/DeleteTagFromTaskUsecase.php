@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Tag;
 
-use App\Services\TagService;
+use App\Domain\Tag\Services\TagService;
 use App\Usecases\Tag\Input\DeleteTagFromTaskUsecaseInput;
 use App\Usecases\Tag\Output\DeleteTagFromTaskUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;
@@ -27,8 +27,8 @@ class DeleteTagFromTaskUsecase extends BaseUsecase
     {
         try {
             $data = $this->input->getData();
-            $this->tag_service->remove($data);
-            $this->data->setData([]);
+            $tag = $this->tag_service->remove($data);
+            $this->data->setData($tag);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);
         } catch (\Throwable $th) {

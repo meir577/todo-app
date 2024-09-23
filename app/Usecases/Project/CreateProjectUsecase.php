@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Project;
 
-use App\Services\ProjectService;
+use App\Domain\Project\Services\ProjectService;
 use App\Usecases\Project\Input\CreateProjectUsecaseInput;
 use App\Usecases\Project\Output\CreateProjectUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;

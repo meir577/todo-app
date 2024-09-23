@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Models;
+declare(strict_types=1);
 
-use App\Models\Scopes\SelfProjectsOnly;
+namespace App\Domain\Project\Entity;
+
+use App\Domain\Project\Entity\Scopes\SelfProjectsOnly;
+use App\Domain\Task\Entity\Task;
+use App\Domain\User\Entity\User;
+use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +20,11 @@ class Project extends Model
     protected $fillable = [
         'name', 'user_id'
     ];
+
+    protected static function newFactory(): ProjectFactory
+    {
+        return ProjectFactory::new();
+    }
 
     public function tasks(): HasMany
     {

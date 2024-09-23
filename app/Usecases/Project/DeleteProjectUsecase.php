@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Project;
 
-use App\Services\ProjectService;
+use App\Domain\Project\Services\ProjectService;
 use App\Usecases\Project\Input\DeleteProjectUsecaseInput;
 use App\Usecases\Project\Output\DeleteProjectUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;
@@ -27,8 +27,8 @@ class DeleteProjectUsecase extends BaseUsecase
     {
         try {
             $project = $this->input->getProject();
-            $this->project_service->remove($project);
-            $this->data->setData([]);
+            $project = $this->project_service->remove($project);
+            $this->data->setData($project);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);
         } catch (\Throwable $th) {

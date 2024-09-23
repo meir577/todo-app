@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Domain\Project\Entity\Project;
 use App\Http\Requests\Project\CreateProjectRequest;
 use App\Http\Requests\Project\UpdateProjectRequest;
-use App\Models\Project;
 use App\Usecases\Project\CreateProjectUsecase;
 use App\Usecases\Project\DeleteProjectUsecase;
 use App\Usecases\Project\GetProjectUsecase;

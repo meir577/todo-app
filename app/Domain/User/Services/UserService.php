@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Domain\User\Services;
 
-use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Domain\User\Entity\User;
+use App\Domain\User\Repository\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
 class UserService

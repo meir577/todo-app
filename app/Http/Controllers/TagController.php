@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Domain\Tag\Entity\Tag;
+use App\Domain\Task\Entity\Task;
 use App\Http\Requests\Tag\AddTagRequest;
-use App\Models\Tag;
-use App\Models\Task;
 use App\Usecases\Tag\CreateTagToTaskUsecase;
+use App\Usecases\Tag\DeleteTagFromTaskUsecase;
 use App\Usecases\Tag\Input\CreateTagToTaskUsecaseInput;
 use App\Usecases\Tag\Input\DeleteTagFromTaskUsecaseInput;
-use App\Usecases\Tag\DeleteTagFromTaskUsecase;
 use Illuminate\Http\JsonResponse;
 
 class TagController extends AbstractController

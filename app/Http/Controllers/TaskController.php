@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Domain\Task\Entity\Task;
 use App\Http\Requests\Task\CreateTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
-use App\Models\Task;
 use App\Usecases\Task\CreateTaskUsecase;
 use App\Usecases\Task\DeleteTaskUsecase;
 use App\Usecases\Task\GetTaskUsecase;

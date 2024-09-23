@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Task;
 
-use App\Services\TaskService;
+use App\Domain\Task\Services\TaskService;
 use App\Usecases\Task\Input\DeleteTaskUsecaseInput;
 use App\Usecases\Task\Output\DeleteTaskUsecaseData;
 use MechtaMarket\PhpEnhance\Base\BaseUsecase;
@@ -27,8 +27,8 @@ class DeleteTaskUsecase extends BaseUsecase
     {
         try {
             $task = $this->input->getTask();
-            $this->task_service->remove($task);
-            $this->data->setData([]);
+            $deleted_task = $this->task_service->remove($task);
+            $this->data->setData($deleted_task);
         } catch (\Exception $ex) {
             $this->errors->addClientError($ex->getMessage(), 400);
         } catch (\Throwable $th) {

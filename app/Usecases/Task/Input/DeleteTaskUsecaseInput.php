@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Task\Input;
 
-use App\Models\Task;
+use App\Domain\Task\Entity\Task;
 use MechtaMarket\PhpEnhance\Base\BaseInput;
 
 class DeleteTaskUsecaseInput extends BaseInput

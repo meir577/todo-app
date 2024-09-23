@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Usecases\Task\Input;
 
+use App\Domain\Task\Entity\Task;
 use App\DTO\TaskDto;
-use App\Models\Task;
 use MechtaMarket\PhpEnhance\Base\BaseInput;
 
 class UpdateTaskUsecaseInput extends BaseInput

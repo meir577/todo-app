@@ -4,19 +4,24 @@ declare(strict_types=1);
 
 namespace App\Usecases\Tag\Output;
 
+use App\Domain\Tag\Entity\Tag;
 use MechtaMarket\PhpEnhance\Interfaces\UsecaseDataInterface;
 
 class DeleteTagFromTaskUsecaseData implements UsecaseDataInterface
 {
-    private readonly array $data;
+    private readonly Tag $data;
 
-    public function setData(array $data): void
+    public function setData(Tag $data): void
     {
         $this->data = $data;
     }
 
     public function getData(): array
     {
-        return $this->data;
+        return [
+            'id' => $this->data->id,
+            'name' => $this->data->name,
+            'task_id' => $this->data->task_id,
+        ];
     }
 }

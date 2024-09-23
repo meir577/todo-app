@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Usecases\Project\Input;
 
+use App\Domain\Project\Entity\Project;
 use App\DTO\ProjectDto;
-use App\Models\Project;
 use MechtaMarket\PhpEnhance\Base\BaseInput;
 
 class UpdateProjectUsecaseInput extends BaseInput

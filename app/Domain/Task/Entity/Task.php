@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Models;
+declare(strict_types=1);
 
-use App\Models\Scopes\SelfTasksOnly;
+namespace App\Domain\Task\Entity;
+
+use App\Domain\Project\Entity\Project;
+use App\Domain\Tag\Entity\Tag;
+use App\Domain\Task\Entity\Scopes\SelfTasksOnly;
+use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +28,11 @@ class Task extends Model
     protected $with = [
         'tags:id,name,task_id',
     ];
+
+    protected static function newFactory(): TaskFactory
+    {
+        return TaskFactory::new();
+    }
 
     public function project(): BelongsTo
     {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\Domain\User\Repository;
 
-use App\Models\User;
+use App\Domain\User\Entity\User;
 
 class UserRepository
 {

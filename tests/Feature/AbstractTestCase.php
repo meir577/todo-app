@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Models\Project;
-use App\Models\Task;
-use App\Models\User;
+use App\Domain\Project\Entity\Project;
+use App\Domain\Task\Entity\Task;
+use App\Domain\User\Entity\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Sanctum\Sanctum;

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Models\Scopes;
+declare(strict_types=1);
+
+namespace App\Domain\Task\Entity\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

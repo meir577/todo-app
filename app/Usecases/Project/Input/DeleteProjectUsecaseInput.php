@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Project\Input;
 
-use App\Models\Project;
+use App\Domain\Project\Entity\Project;
 use MechtaMarket\PhpEnhance\Base\BaseInput;
 
 class DeleteProjectUsecaseInput extends BaseInput
