@@ -8,15 +8,16 @@ class TokenDto extends AbstractDto
 {
     public function __construct(
         private readonly string $token,
-        private readonly string $expiresAt
-    ) {
+        private readonly string $expires_at
+    )
+    {
     }
 
     public function toArray(): array
     {
         return [
             'token' => $this->token,
-            'expires_at' => $this->expiresAt,
+            'expires_at' => $this->expires_at,
         ];
     }
 }

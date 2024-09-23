@@ -58,7 +58,7 @@ class TaskControllerTest extends AbstractTestCase
         ]);
     }
 
-    public function test_show_givingInValidId_returns_nothing(): void
+    public function test_show_givingInvalidId_returns_nothing(): void
     {
         // Arrange
         $access_token = $this->user->currentAccessToken();

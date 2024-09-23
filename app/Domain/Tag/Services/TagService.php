@@ -15,9 +15,9 @@ class TagService
     {
     }
 
-    public function create(int $taskId, array $data): Tag
+    public function create(int $task_id, array $data): Tag
     {
-        return $this->tag_repository->insert($taskId, $data);
+        return $this->tag_repository->insert($task_id, $data);
     }
 
     public function remove(array $data): Tag

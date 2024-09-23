@@ -6,13 +6,13 @@ use Illuminate\Http\JsonResponse;
 
 class ErrorResponse extends JsonResponse
 {
-    public function __construct(mixed $data = [], ?string $message = null, int $status = 400, array $headers = [])
+    public function __construct(mixed $data = [], array|string $messages = [], int $status = 400, array $headers = [])
     {
         parent::__construct([
             'result' => false,
-            'errors' => $data,
+            'errors' => $messages,
             'code' => $status,
-            'data' => $message,
+            'data' => $data,
         ], $status, $headers);
     }
 }
